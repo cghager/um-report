@@ -1,0 +1,53 @@
+---
+title: "Exercise UM Carp"
+author: "Cody Hager"
+date: "2023-10-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+gapminder_data <- read.csv("data/gapminder_data.csv")
+
+
+*Make a scatter plot of year vs pop seperated by contiennt*
+```{r}
+library(tidyverse)
+library(knitr)
+library(here)
+```
+
+```{r data, included=FALSE}
+gapminder_data <- read_csv(here("data/gapminder_data.csv"))
+```
+
+```{r}
+gap_data_wo_outliers <- gap_data %>%
+    filter(country, )
+ggplot(data = gapminder_data, aes(x = year, y = pop))+
+  geom_line()+
+  facet_wrap(vars(continent))
+```
+ 
