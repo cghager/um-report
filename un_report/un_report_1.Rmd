@@ -41,6 +41,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ```{r packages}
 library(tidyverse)
 library(here)
+library(knitr)
 ```
 
 This report was prepared to the attention of the UN. It was analyzes the relationship between a country's GDP, its life expectancy, and C)2 emissions. Our goal is the determine to what a degree a country's economic strength or weakness is related to its public health status and impact on climate pollution. WE hypothesize that both life and expectancy and CO2 emissions increase with the country's GDP
@@ -55,3 +56,55 @@ ggplot(data = gapminder_1997, aes(x = gdpPercap, y = lifeExp,
   geom_point()+
   labs(x="GDP perCapita", y="Life Expectancy", title="Do people in wealthy countries live longer?", sice = "Population(in Millions)")
 ```
+
+```{r, included=FALSE}
+n_countries <- gapminder_1997 %>%
+  select(country) %>%
+  n_distinct()
+
+minimum_gdp <- gapminder_1997 %>%
+  summarize(min(gdpPercap)) %>%
+  round(digits = 1)
+
+maximum_gdp <- gapminder_1997 %>%
+  summarize(max(gdpPercap)) %>%
+  round(digits = 1)
+```
+
+The above plot shows the relationship between GDP per capita and life expectancy for a total of `r n_countries` countries. For this set of countries, economic wealth ranged from a minium of $`r minimum_gdp` to a maximum of $`r maximum_gdp` per capita.
+
+| HEADER 1 | HEADER 2 |
+|:----------|----------:|
+|row1,col1 | row1,col2|
+|row2,col1 | row2,col2| 
+|Number of Coountries | `r n_countries` |
+|Minimum GDP per Capita| `r minimum_gdp` |
+|Maximum GDP per Capita| `r maximum_gdp` |
+
+```{r table, echo=FALSE}
+gapminder_1997 %>%
+  filter(continent == "Oceania") %>%
+  kable()
+```
+# This is how to create bullet points
+
++ **R** 
++ substitute(paste(italic(‘graphing’)))
++ **substitute(paste(italic(‘analyze sequencing data’)))**
+
+1. **R** 
+1. _graphing_
+1. _**analyze sequencing data**_
+  
+Also can use * for bullet point
+Bold and Italic ***word***  
+[hyperlink](actual link)
+  
+This is how to create heading and sub heading 
+
+# Heading 1 
+## Heading 2  
+### Heading 3 
+#### Heading 4  
+##### Heading 5  
+###### Heading 6
